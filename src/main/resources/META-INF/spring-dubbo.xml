@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://code.alibabatech.com/schema/dubbo
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <dubbo:application name="${spring.dubbo.application.name}" default="true"/>
+    <!--dubbo服务地址-->
+
+    <dubbo:registry id="dubboServer" protocol="zookeeper" address="${spring.dubbo.registry.address}"/>
+    <!--用dubbo协议在20880端口暴露服务【可自定义，不能冲突】 -->
+    <dubbo:protocol name="dubbo" port="${spring.dubbo.registry.port}"/>
+    <!-- dubbo 消费者 -->
+
+    <!-- 仓储在途车挑拨日志dubbo服务 -->
+    <dubbo:reference id="userService" interface="com.hshc.upms.service.api.security.UserService" registry="dubboServer" check="false" retries="3" group="upms" timeout="30000"/>
+    <dubbo:reference id="resourceService" interface="com.hshc.upms.service.api.security.ResourceService" registry="dubboServer" check="false" retries="3" group="upms" timeout="30000"/>
+
+</beans>

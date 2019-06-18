@@ -1,0 +1,38 @@
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://192.168.99.57:18000/eureka/,http://192.168.100.25:18000/eureka/
+
+cas:
+    server-url-prefix: http://192.168.99.15:8081/sso
+    server-login-url: http://192.168.99.15:8081/sso
+    client-host-url: http://192.168.96.55:17100
+    validation-type: cas
+
+
+sso:
+    login-url: /mng/login.htm
+    sys-id: 13
+    loginSuccessPage: http://10.254.2.208:8889/#/home
+hshc:
+    redisTemplate:
+        isenable: true
+        manage:
+            defaultExpiration: 60
+            usePrefix: true
+        expires:
+            1h: 3600
+            12h: 43200
+            CarImages: 0
+            FinancialPlan: 0
+        cacheNamePrefix: manager-getway
+spring:
+    redis:
+        host: 192.168.99.57
+        port: 6379
+    dubbo:
+        application:
+            name: manager-getway
+        registry:
+            address: zookeeper://192.168.99.28:2181
+            port: 2081

@@ -1,0 +1,14 @@
+server:
+    port: 17100
+    #contextPath: /hshc-cmallapi
+spring:
+    application:
+        name: hshc-manager-getway
+    profiles:
+        active: ${profileActive}
+    #cloud:
+    #    config:
+    #        uri: ${configUrl}
+    #        profile: ${profileActive}
+    #        label: master
+    #        fail-fast: true
